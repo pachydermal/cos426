@@ -17,7 +17,7 @@ Scene.setUniforms = function() {
     if (sceneData.camera !== undefined) {
         Raytracer.setCamera(sceneData.camera);
     } else {
-        Raytracer.setCamera([0.15, -0.05, 0]);
+        Raytracer.setCamera([0, 0, 0]);
     }
 
         for (var i = 0; i < sceneData.lights.length; i++) {

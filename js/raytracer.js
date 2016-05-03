@@ -51,8 +51,8 @@ Raytracer.handleTurn = function(event, dir) {
     var newRotationMatrix = mat4.create();
     mat4.identity(newRotationMatrix);
     mat4.rotate(newRotationMatrix, rad, [0, 1, 0]);
-    mat4.rotate(newRotationMatrix, 0, [1, 0, 0]);
     mat4.multiply(newRotationMatrix, Raytracer.RotationMatrix, Raytracer.RotationMatrix);
+
 
     Raytracer.needsToDraw = true;
 }
