@@ -2,18 +2,17 @@ window.onload = function() {
     
     var cmd = Parser.getCommands(document.URL)[0];
         
-    var height = cmd.height || window.innerHeight; // we can modify window height/width here
+    var height = cmd.height || window.innerHeight;
     var width  = cmd.width  || window.innerWidth;
         
+    var animated= cmd.animated|| 0;
     var paused = false;
-    var debug = cmd.debug || false;
+    var debug = cmd.debug||false;
 
     Scene.sceneName = cmd.scene || "default";
     Raytracer.init(height, width, debug);
     Scene.setUniforms();
     
-    Student.updateHTML();
-
     var drawScene = function() {
 
         if (!animated || !paused) Raytracer.render(animated);
@@ -51,9 +50,9 @@ window.onload = function() {
     window.addEventListener( 'keydown', function( event ) {
         // only respond to 'I' key
         if (event.which == 38) {
-        	Raytracer.handleZoom(1.0);	
+            Raytracer.handleZoom(1.0);  
         }else if (event.which == 40) {
-        	Raytracer.handleZoom(-1.0);	
+            Raytracer.handleZoom(-1.0); 
         }
     });
 }
