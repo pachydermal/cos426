@@ -45,6 +45,18 @@ Raytracer.handleZoom = function(delta)
     Raytracer.needsToDraw = true;
 };
 
+Raytracer.handleTurn = function(event, dir) {
+    var rad = dir * Math.PI / 2;
+    rad = rad / 10;
+    var newRotationMatrix = mat4.create();
+    mat4.identity(newRotationMatrix);
+    mat4.rotate(newRotationMatrix, rad, [0, 1, 0]);
+    mat4.rotate(newRotationMatrix, 0, [1, 0, 0]);
+    mat4.multiply(newRotationMatrix, Raytracer.RotationMatrix, Raytracer.RotationMatrix);
+
+    Raytracer.needsToDraw = true;
+}
+
 Raytracer.handleMouseMove = function(event) {
 	var newX   = event.clientX;
 	var newY   = event.clientY;
