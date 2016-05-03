@@ -72,6 +72,10 @@ window.onload = function() {
             Raytracer.handleZoom(1.0);  
         }else if (event.which == 40) {
             Raytracer.handleZoom(-1.0); 
+        }else if (event.which == 37) {
+            Raytracer.handleTurn(event, -1);
+        }else if (event.which == 39) {
+            Raytracer.handleTurn(event, 1);
         }
     });
 }
