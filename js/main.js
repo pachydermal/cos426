@@ -14,22 +14,10 @@ window.onload = function() {
     var debug = cmd.debug||false;
 
     Scene.sceneName = cmd.scene || "default";
-    Raytracer.init(height, width, debug);
+    // Raytracer.init(height, width, debug);
+    Update.updateCanvasSpace(debug);
     Scene.setUniforms();
     
-    document.getElementById("topdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
-    document.getElementById("bottomdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
-    
-    document.getElementById("leftdiv").style.width = window.innerWidth*(interactive_space_ratio) - 50 + "px";
-    document.getElementById("rightdiv").style.width = window.innerWidth*(1.0 - interactive_space_ratio) - 50 + "px";
-    document.getElementById("rightdiv").style.height = height + "px";
-
-    document.getElementById("rightdiv").style.float = "left";
-    document.getElementById("leftdiv").style.float = "left";
-    document.getElementById("leftdiv").style.marginLeft = "50px";
-    document.getElementById("rightdiv").style.marginRight = "50px";
-
-    document.getElementById("rightdiv").style.backgroundColor = "black";
 
 
     var drawScene = function() {
