@@ -4,6 +4,10 @@ window.onload = function() {
         
     var height = cmd.height || window.innerHeight;
     var width  = cmd.width  || window.innerWidth;
+
+    var interactive_space_ratio = 0.75;
+    height = height*interactive_space_ratio;
+    width = window.innerWidth*(interactive_space_ratio) - 50;
         
     var animated= cmd.animated|| 0;
     var paused = false;
@@ -13,6 +17,21 @@ window.onload = function() {
     Raytracer.init(height, width, debug);
     Scene.setUniforms();
     
+    document.getElementById("topdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
+    document.getElementById("bottomdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
+    
+    document.getElementById("leftdiv").style.width = window.innerWidth*(interactive_space_ratio) - 50 + "px";
+    document.getElementById("rightdiv").style.width = window.innerWidth*(1.0 - interactive_space_ratio) - 50 + "px";
+    document.getElementById("rightdiv").style.height = height + "px";
+
+    document.getElementById("rightdiv").style.float = "left";
+    document.getElementById("leftdiv").style.float = "left";
+    document.getElementById("leftdiv").style.marginLeft = "50px";
+    document.getElementById("rightdiv").style.marginRight = "50px";
+
+    document.getElementById("rightdiv").style.backgroundColor = "black";
+
+
     var drawScene = function() {
 
         if (!animated || !paused) Raytracer.render(animated);
