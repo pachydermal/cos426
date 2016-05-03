@@ -60,12 +60,8 @@ Raytracer.handleTurn = function(event, dir) {
     mat4.identity(newRotationMatrix);
     mat4.rotate(newRotationMatrix, rad, [0, 1, 0]);
     mat4.multiply(newRotationMatrix, Raytracer.RotationMatrix, Raytracer.RotationMatrix);
-<<<<<<< HEAD
+
     deltay = deltay + dir;
-=======
-
-
->>>>>>> JennieWerner13/master
     Raytracer.needsToDraw = true;
 }
 
