@@ -28,6 +28,8 @@ Raytracer.mouseDown = false;
 Raytracer.lastMouseX = null;
 Raytracer.lastMouseY = null;
 
+var cameraPos = new THREE.Vector3(0, 0, 0);
+var deltay = 0; 
 
 Raytracer.handleMouseDown = function(event) {
 	Raytracer.mouseDown = true;
@@ -42,6 +44,12 @@ Raytracer.handleMouseUp = function(event) {
 Raytracer.handleZoom = function(delta)
 {
 	mat4.translate(Raytracer.RotationMatrix, [0.0, 0.0, 0.5 * delta]);
+
+    var radY = Math.PI/20 * deltay; 
+
+    cameraPos.x += (delta *Math.sin(radY)); 
+    cameraPos.z -= (delta* Math.cos(radY)); 
+    //console.log(cameraPos);
     Raytracer.needsToDraw = true;
 };
 
@@ -52,8 +60,12 @@ Raytracer.handleTurn = function(event, dir) {
     mat4.identity(newRotationMatrix);
     mat4.rotate(newRotationMatrix, rad, [0, 1, 0]);
     mat4.multiply(newRotationMatrix, Raytracer.RotationMatrix, Raytracer.RotationMatrix);
+<<<<<<< HEAD
+    deltay = deltay + dir;
+=======
 
 
+>>>>>>> JennieWerner13/master
     Raytracer.needsToDraw = true;
 }
 
