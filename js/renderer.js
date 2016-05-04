@@ -78,19 +78,32 @@ Renderer.onWindowResize = function () {
     document.getElementById("topdiv").style.height = window.innerHeight*0.225 + "px"; // SARAH
 };
 
-
+// THIS IS THE IMPORTANT FUNCTION
 Renderer.update = function () {
 
     ParticleEngine.step();
 
     Renderer._controls.update();
-    // Renderer._stats.update();
+    // Renderer._stats.update(); // SARAH
+
+    // SARAH: ADD UPDATE FOR POSITION 
+    Player.updatePosition();
+
 
     Renderer._renderer.render( Renderer._scene, Renderer._camera );
 
+    // SARAH
+    if (Game.levelCompleted()) {
+        Game.progressToNextLevel();
+    }
+    else if (Game.timesUp()) {
+        Game.lostGame();
+    }
+    else {
+        requestAnimationFrame( Renderer.update );    
+    }
 
-    requestAnimationFrame( Renderer.update );
-
+    // requestAnimationFrame( Renderer.update );    
 }
 
 Renderer.snapShot = function () {

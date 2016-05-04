@@ -46,7 +46,7 @@
         }
     </script>
 
-        <!-- Our program -->
+    <!-- ############################################################################################################### -->
     <script src="js/utils.js"></script>
     <script src="js/gui.js"></script>
     <script src="js/initializers.js"></script>
@@ -56,14 +56,42 @@
     <script src="js/renderer.js"></script>
     <script src="js/scene.js"></script>
     <script src="js/parser.js"> </script>
+    <script src="js/player.js"> </script> <!-- SARAH ADDED -->
+    <script src="js/game.js"> </script> <!-- SARAH ADDED -->
+    <script src="js/goal.js"> </script> <!-- SARAH ADDED -->
 
-    <script src="js/main.js"> </script>
+    <script src="js/main.js"> </script> <!-- Start here to see how the game works -->
 
-    <div id="topdiv"></div>
-    <div id="maindiv">
-        <canvas id="canvas" width="480" height="320"></canvas>
+
+    <!-- ############################################################################################################### -->
+    <!-- Sarah's dummy pages (see the web page to understand its very basic functions) -->
+    <!-- Most of these pages aren't visible. They appear one at a time depending on the current level.  -->
+
+    <!-- These are the story pages -->
+    <!-- Every time a story page is added, make sure to modify its css in style.css (initially set display to none) -->
+    <div id="storypage">
+        <div id="storyline0-0">STORYLINE 0, PAGE 0 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline0-1">STORYLINE 0, PAGE 1 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline0-2">STORYLINE 0, PAGE 2 GOES HERE <button onclick="Game.playGame()">Play Game</button></div>
+
+        <div id="storyline1-0">STORYLINE 1, PAGE 0 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline1-1">STORYLINE 1, PAGE 1 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline1-2">STORYLINE 1, PAGE 2 GOES HERE <button onclick="Game.playGame()">Play Game</button></div>
+
+        <div id="youwon">CONGRATS YOU WON!</div>
+        <div id="youlost">Sorry, you lost. Try again!</div>
     </div>
 
+    <!-- This is the game/interactive space -->
+    <div id="gamediv">
+
+        <!-- Top bar contains instructions and birds eye view -->
+        <div id="topbar">This div is where random text goes and birds eye view can be in top right. Since we don't actually have a game yet, there's just a random 1% chance that you'll lose every time step. But otherwise, you win! For now, wait for a few seconds, then we'll have reached the goal and we are brought to the next level.</div>
+
+        <!-- Canvas contains the actual game -->
+        <canvas id="canvas" width="540" height="380"></canvas>
+
+    </div>
 
 </body>
 </html>

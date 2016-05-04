@@ -139,3 +139,36 @@ button {
     background-image: linear-gradient(to bottom, #333, #222);
     filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#333, endColorstr=#222);
 }
+
+
+
+
+
+#storyline0-1 {
+    display: none;
+}
+
+#storyline0-2 {
+    display: none;
+}
+
+#storyline1-0 {
+    display: none;
+}
+
+#storyline1-1 {
+    display: none;
+}
+
+#storyline1-2 {
+    display: none;
+}
+
+#youwon {
+    display: none;
+}
+
+#youlost {
+    display: none;
+}
+

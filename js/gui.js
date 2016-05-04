@@ -32,20 +32,20 @@ Gui.values = {
 // defaults only hold actual mesh modifiers, no display
 Gui.defaults = { };
 
-// Gui.alertOnce = function( msg ) {
-//     var mainDiv = document.getElementById('main_div');
-//     mainDiv.style.opacity = "0.3";
-//     var alertDiv = document.getElementById('alert_div');
-//     alertDiv.innerHTML = '<p>'+msg + '</p><button id="ok" onclick="Gui.closeAlert()">ok</button>';
-//     alertDiv.style.display = 'inline';
-// };
+Gui.alertOnce = function( msg ) {
+    var mainDiv = document.getElementById('main_div');
+    mainDiv.style.opacity = "0.3";
+    var alertDiv = document.getElementById('alert_div');
+    alertDiv.innerHTML = '<p>'+msg + '</p><button id="ok" onclick="Gui.closeAlert()">ok</button>';
+    alertDiv.style.display = 'inline';
+};
 
-// Gui.closeAlert = function () {
-//     var mainDiv = document.getElementById('main_div');
-//     mainDiv.style.opacity = "1";
-//     var alertDiv = document.getElementById('alert_div');
-//     alertDiv.style.display = 'none';
-// };
+Gui.closeAlert = function () {
+    var mainDiv = document.getElementById('main_div');
+    mainDiv.style.opacity = "1";
+    var alertDiv = document.getElementById('alert_div');
+    alertDiv.style.display = 'none';
+};
 
 Gui.toCommandString = function () {
     var url = '';
@@ -153,18 +153,18 @@ Gui.init = function ( meshChangeCallback, controlsChangeCallback, displayChangeC
 
 
 // non-implemented alert functionality
-// Gui.alertOnce = function( msg ) {
-//     var mainDiv = document.getElementById('main_div');
-//     mainDiv.style.opacity = "0.3";
-//     var alertDiv = document.getElementById('alert_div');
-//     alertDiv.innerHTML = '<p>'+ msg + '</p><button id="ok" onclick="Gui.closeAlert()">ok</button>';
-//     alertDiv.style.display = 'inline';
-// };
+Gui.alertOnce = function( msg ) {
+    var mainDiv = document.getElementById('main_div');
+    mainDiv.style.opacity = "0.3";
+    var alertDiv = document.getElementById('alert_div');
+    alertDiv.innerHTML = '<p>'+ msg + '</p><button id="ok" onclick="Gui.closeAlert()">ok</button>';
+    alertDiv.style.display = 'inline';
+};
 
-// Gui.closeAlert = function () {
-//     var mainDiv = document.getElementById('main_div');
-//     mainDiv.style.opacity = "1";
-//     var alertDiv = document.getElementById('alert_div');
-//     alertDiv.style.display = 'none';
-// };
+Gui.closeAlert = function () {
+    var mainDiv = document.getElementById('main_div');
+    mainDiv.style.opacity = "1";
+    var alertDiv = document.getElementById('alert_div');
+    alertDiv.style.display = 'none';
+};
 

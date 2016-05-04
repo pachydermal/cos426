@@ -1,7 +1,20 @@
+// DELETED BATCH.JS (SARAH)
 
 var Main = Main || { };
 
+// when HTML is finished loading, do this
+window.onload = function() {
 
+    // Begin the game from level 0 (SARAH)
+    Scene.create(); // initially, we create a scene
+    Player.init(); // then we create a player
+    Game.init(); // and setup the game
+
+    // The player must read the storyline, each button taking it to the next page. Eventually, one of the 
+    // buttons starts the game. See Game.playGame().
+};
+
+// We use this to present the new levels of the game, which are interactive and involve animation. 
 // called when the gui params change and we need to update mesh
 Main.particleSystemChangeCallback = function ( InputSettings ) {
 
@@ -55,24 +68,4 @@ Main.particleSystemChangeCallback = function ( InputSettings ) {
 
     // Create the scene
     InputSettings.createScene();
-};
-
-// when HTML is finished loading, do this
-window.onload = function() {
-
-    // Setup renderer, scene and gui
-
-    // INSTEAD OF SETTING UP GUI HERE, SET UP OUR INSTRUCTION/STORYLINE SECTION AND THE BIRDS EYE VIEW MAP (SARAH)
-    // SARAH: NEXT, WORK ON NAVIGATION AND MOUSE CONTROLS
-    // Gui.init( Main.controlsChangeCallback,
-    //           Main.displayChangeCallback );
-    Scene.create();
-
-
-    // Add particle system
-    Main.particleSystemChangeCallback( SystemSettings.basic );
-
-    Renderer.create( Scene, document.getElementById("canvas") );
-    Renderer.update();
-    document.getElementById("topdiv").style.height = window.innerHeight*0.225 + "px"; // SARAH
 };
