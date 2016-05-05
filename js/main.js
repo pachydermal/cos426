@@ -15,12 +15,19 @@ window.onload = function() {
 
 
     // add event listener that will cause 'I' key to download image
-    window.addEventListener( 'keyup', function( event ) {
-        if ( event.which == 37 ) {
-            Player.turnLeft(0.05);
-        }
-        else if ( event.which == 37 ) {
-            Player.turnLeft(0.05);
+    window.addEventListener( 'keydown', function( event ) {
+        var moveInc = 10;
+        var turnInc = 0.05;
+
+        if (event.which == 38) { // move forward
+            console.log("forward");
+            Player.moveForward(moveInc);  
+        }else if (event.which == 40) { // move backwards
+            Player.moveBackward(moveInc); 
+        }else if (event.which == 37) { // left turn
+            Player.turnLeft(turnInc);
+        }else if (event.which == 39) { // right turn
+            Player.turnRight(turnInc);
         }
     });
 
