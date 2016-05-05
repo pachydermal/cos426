@@ -1,32 +1,97 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <title>Awesome Test Game</title>
-    <style>
-    	* { padding: 0; margin: 0; }
-    	canvas { background: #eee; display: block; margin: 0 auto; }
-    </style>
+    <title> COS426 Assignment 4 &mdash; Mesh Processing &mdash; Interactive</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet"/>
 </head>
+
 <body>
+    <!-- Core THREE.js -->
+    <script src="libjs/dat.gui.min.js"> </script>
+    <script src="libjs/stats.min.js"></script>
+    <script src="libjs/three.min.js"></script>
+    <script src="libjs/TrackballControls.js"></script>
 
-<div id="topdiv"></div>
-<div id="leftdiv">
-	<canvas id="canvas" width="480" height="320"></canvas>
-</div>
-<div id="rightdiv"></div>
-<div id="bottomdiv"></div>
+    <script id="vertexShader" type="x-shader/x-vertex">
+        // attribute vec3 position; // apparently three.js builds in position. Similarly the projection and model-view matrices
+        attribute float size;
+        attribute vec3 velocity;
+        attribute vec4 color;
+        attribute float lifetime;
+
+        varying vec4 vColor;
+
+        void main() {
+
+            vColor = color;
+
+            // calculate required position
+            vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+            gl_PointSize    = size * ( 300.0 / length( mvPosition.xyz ) ); // make points bigget if we are closer to them?
+            gl_Position     = projectionMatrix *
+                              mvPosition;
+        }
+    </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment" >
+        uniform vec3 globColor;
+        uniform sampler2D texture;
+
+        varying vec4 vColor;
+
+        void main() {
+            vec4 tex = texture2D(texture, gl_PointCoord);
+            gl_FragColor = tex * vColor;
+        }
+    </script>
+
+    <!-- ############################################################################################################### -->
+    <script src="js/utils.js"></script>
+    <script src="js/gui.js"></script>
+    <script src="js/initializers.js"></script>
+    <script src="js/updaters.js"></script>
+    <script src="js/ParticleEngine.js"></script>
+    <script src="js/systemSettings.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/scene.js"></script>
+    <script src="js/parser.js"> </script>
+    <script src="js/player.js"> </script> <!-- SARAH ADDED -->
+    <script src="js/game.js"> </script> <!-- SARAH ADDED -->
+    <script src="js/goal.js"> </script> <!-- SARAH ADDED -->
+
+    <script src="js/main.js"> </script> <!-- Start here to see how the game works -->
 
 
-<script src="libjs/three.min.js"> </script>
-<script src="libjs/OBJLoader.js"> </script>
-<script src="libjs/glMatrix-0.9.5.min.js"> </script>
+    <!-- ############################################################################################################### -->
+    <!-- Sarah's dummy pages (see the web page to understand its very basic functions) -->
+    <!-- Most of these pages aren't visible. They appear one at a time depending on the current level.  -->
 
-<script src="js/raytracer.js"> </script>
-<script src="js/scene.js"> </script>
-<script src="js/parser.js"> </script>
-<script src="js/main.js"> </script>
-<script src="js/update.js"> </script>
+    <!-- These are the story pages -->
+    <!-- Every time a story page is added, make sure to modify its css in style.css (initially set display to none) -->
+    <div id="storypage">
+        <div id="storyline0-0">STORYLINE 0, PAGE 0 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline0-1">STORYLINE 0, PAGE 1 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline0-2">STORYLINE 0, PAGE 2 GOES HERE <button onclick="Game.playGame()">Play Game</button></div>
+
+        <div id="storyline1-0">STORYLINE 1, PAGE 0 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline1-1">STORYLINE 1, PAGE 1 GOES HERE <button onclick="Game.nextPage()">Next Page</button></div>
+        <div id="storyline1-2">STORYLINE 1, PAGE 2 GOES HERE <button onclick="Game.playGame()">Play Game</button></div>
+
+        <div id="youwon">CONGRATS YOU WON!</div>
+        <div id="youlost">Sorry, you lost. Try again!</div>
+    </div>
+
+    <!-- This is the game/interactive space -->
+    <div id="gamediv">
+
+        <!-- Top bar contains instructions and birds eye view -->
+        <div id="topbar">This div is where random text goes and birds eye view can be in top right. Since we don't actually have a game yet, there's just a random 1% chance that you'll lose every time step. But otherwise, you win! For now, wait for a few seconds, then we'll have reached the goal and we are brought to the next level.</div>
+
+        <!-- Canvas contains the actual game -->
+        <canvas id="canvas" width="540" height="380"></canvas>
+
+    </div>
 
 </body>
-</html>	
+</html>
