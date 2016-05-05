@@ -79,7 +79,7 @@ SystemSettings.level0 = {
     },
 
     // Scene
-    maxParticles :  5000,
+    maxParticles :  10,
     particlesFreq : 500,
     createScene : function () {
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
@@ -127,7 +127,7 @@ SystemSettings.level1 = {
     },
 
     // Scene
-    maxParticles :  5000,
+    maxParticles :  10,
     particlesFreq : 500,
     createScene : function () {
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );

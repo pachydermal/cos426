@@ -83,7 +83,7 @@ Renderer.onWindowResize = function () {
 // THIS IS THE IMPORTANT FUNCTION
 Renderer.update = function () {
 
-    ParticleEngine.step();
+    GameEngine.step();
 
     // Renderer._controls.update(); // BRING BACK LATER
 
