@@ -125,17 +125,17 @@ Renderer.snapShot = function () {
     window.open( url );
 }
 
-// add event listener that will cause 'I' key to download image
-window.addEventListener( 'keyup', function( event ) {
-    // only respond to 'I' key
-    if ( event.which == 73 ) {
-        Renderer.snapShot();
-    }
-});
+// // add event listener that will cause 'I' key to download image
+// window.addEventListener( 'keyup', function( event ) {
+//     // only respond to 'I' key
+//     if ( event.which == 73 ) {
+//         Renderer.snapShot();
+//     }
+// });
 
-window.addEventListener( 'keyup', function( event ) {
-    // only respond to 'Spacebar' key
-    if ( event.which == 32 ) {
-        ParticleEngine.pause();
-    }
-});
+// window.addEventListener( 'keyup', function( event ) {
+//     // only respond to 'Spacebar' key
+//     if ( event.which == 32 ) {
+//         ParticleEngine.pause();
+//     }
+// });
