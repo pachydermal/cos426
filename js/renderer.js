@@ -48,8 +48,10 @@ Renderer.create = function( scene, canvas ) {
 
     // Create camera and setup controls
     Renderer._camera   = new THREE.PerspectiveCamera ( 55, Renderer._aspect, 0.01, 5000 );
-    Renderer._controls = new THREE.TrackballControls ( Renderer._camera, Renderer._renderer.domElement );
-    Renderer._camera.position.set( 0, 0, 200 );
+    // Renderer._controls = new THREE.TrackballControls ( Renderer._camera, Renderer._renderer.domElement );
+    Renderer._camera.position.set( Player.position[0], Player.position[1], Player.position[2] ); // SARAH
+    Renderer._camera.rotation.set( Player.orientation[0], Player.orientation[1], Player.orientation[2]); // SARAH
+
 
 
     // Add rendering stats, so we know the performance
@@ -83,7 +85,9 @@ Renderer.update = function () {
 
     ParticleEngine.step();
 
-    Renderer._controls.update();
+    // Renderer._controls.update(); // BRING BACK LATER
+
+
     // Renderer._stats.update(); // SARAH
 
     // SARAH: ADD UPDATE FOR POSITION 

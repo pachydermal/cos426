@@ -3,10 +3,10 @@ var Goal = Goal || {};
 Goal.init = function(level) {
 	// FILL IN FOR EVERY LEVEL
 	if (level == 0) {
-		this.position = [400,400,400];
+		this.position = [40000,400,400];
 	}
 	else {
-		this.position = [400,400,400];
+		this.position = [40000,400,400];
 	}
 }
 

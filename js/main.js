@@ -6,9 +6,9 @@ var Main = Main || { };
 window.onload = function() {
 
     // Begin the game from level 0 (SARAH)
-    Scene.create(); // initially, we create a scene
-    Player.init(); // then we create a player
+    Player.init(); // we create a player
     Game.init(); // and setup the game
+    Scene.create(); // then we create a scene
 
     // The player must read the storyline, each button taking it to the next page. Eventually, one of the 
     // buttons starts the game. See Game.playGame().

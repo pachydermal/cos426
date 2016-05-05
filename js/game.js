@@ -28,7 +28,7 @@ Game.progressToNextLevel = function() {
 // Based on timer 
 // THIS NEEDS TO BE MODIFIED
 Game.timesUp = function() {
-	if (Math.random() < 0.001) return true;
+	if (Math.random() < 0.0000001) return true;
 	else return false;
 }
 
@@ -57,10 +57,10 @@ Game.openStoryline = function() {
 // will need to be changed when we finish writing our levels
 Game.goToLevel = function(level) {
 	if (level == 0) {
-		var nextLevel = SystemSettings.cloth;
+		var nextLevel = SystemSettings.level0;
 	}
 	else {
-		var nextLevel = SystemSettings.animated;
+		var nextLevel = SystemSettings.level1;
 	}
 
 	Main.particleSystemChangeCallback( nextLevel)
