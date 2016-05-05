@@ -42,6 +42,26 @@ Game.levelCompleted = function() {
 	else return false;
 }
 
+// Checks if given position is within bounds, bounds are INCLUSIVE
+// NEEDS TO BE FILLED IN
+Game.inBounds = function( position ) {
+	var xMin = -201;
+	var xMax = 201;
+	var yMin = -201;
+	var yMax = 201;
+	var zMin = -201;
+	var zMax = 201;
+
+	if (position[0] <= xMax && position[0] >= xMin) { // check x values
+		if (position[1] <= yMax && position[1] >= yMin) { // check y values
+			if (position[2] <= zMax && position[2] >= zMin) { // check z values
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
 // Close the game space and reopen the storyline pages (if we follow the convention
 // I used for naming the pages, this doesn't need to be changed)
 Game.openStoryline = function() {
