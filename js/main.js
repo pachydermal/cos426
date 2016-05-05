@@ -20,7 +20,6 @@ window.onload = function() {
         var turnInc = 0.05;
 
         if (event.which == 38) { // move forward
-            console.log("forward");
             Player.moveForward(moveInc);  
         }else if (event.which == 40) { // move backwards
             Player.moveBackward(moveInc); 
