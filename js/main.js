@@ -12,6 +12,18 @@ window.onload = function() {
 
     // The player must read the storyline, each button taking it to the next page. Eventually, one of the 
     // buttons starts the game. See Game.playGame().
+
+
+    // add event listener that will cause 'I' key to download image
+    window.addEventListener( 'keyup', function( event ) {
+        if ( event.which == 37 ) {
+            Player.turnLeft(0.05);
+        }
+        else if ( event.which == 37 ) {
+            Player.turnLeft(0.05);
+        }
+    });
+
 };
 
 // We use this to present the new levels of the game, which are interactive and involve animation. 
