@@ -48,13 +48,11 @@ SystemSettings.myMaterial = new THREE.ShaderMaterial( {
 SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
     var yWidth = 40; // standard height for walls
     var yPos = yWidth / 2; // standard center y for walls
-    var randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
 
-    var phong = new THREE.MeshBasicMaterial( { color: randColor } ); // not actually phong, just lazy about var names
-    // var phong     = new THREE.MeshPhongMaterial( {color: randColor, emissive: 0x222222, side: THREE.DoubleSide } );
+    var material = new THREE.MeshNormalMaterial( {wireframe: false });
 
     var wall_geo = new THREE.BoxGeometry(xWidth, yWidth, zWidth);
-    var wall = new THREE.Mesh(wall_geo, phong);
+    var wall = new THREE.Mesh(wall_geo, material);
     wall.position.set( xPos, yPos, zPos);
     return wall;
 };
