@@ -10,7 +10,7 @@ var Scene = Scene || {
     _materials : [],
     _axis      : undefined,
     _grid      : undefined,
-    _light     : undefined,
+    _light     : [],
     _objects   : [],
 };
 
@@ -23,13 +23,13 @@ Scene.create = function () {
 
 // Lights
 Scene.setupLighting = function() {
-    var light = new THREE.AmbientLight( 0x303030 ); // soft white light
+    this._light[0] = new THREE.AmbientLight( 0x303030, 2.0 ); // soft white light
+    Scene._scene.add(this._light[0]);
 
-    this._light    = new THREE.PointLight( 0xffffff, 2.0, 500.0 );
-    this._light .position.set( 0, 250, 0 );
+    this._light[1]    = new THREE.PointLight( 0xffffff, 2.0, 500.0 );
+    this._light[1].position.set( 0, 250, 0 );
 
-    // Scene._scene.add( light );
-    Scene._scene.add( this._light  );
+    Scene._scene.add( this._light[1]  );
 };
 
 // Materials
