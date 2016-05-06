@@ -15,18 +15,12 @@ window.onload = function() {
 
 
     // add event listener that will cause 'I' key to download image
-    window.addEventListener( 'keydown', function( event ) {
-        var moveInc = 10;
-        var turnInc = 0.05;
-
-        if (event.which == 38) { // move forward
-            Player.moveForward(moveInc);  
-        }else if (event.which == 40) { // move backwards
-            Player.moveBackward(moveInc); 
-        }else if (event.which == 37) { // left turn
-            Player.turnLeft(turnInc);
-        }else if (event.which == 39) { // right turn
-            Player.turnRight(turnInc);
+    window.addEventListener( 'keyup', function( event ) {
+        if ( event.which == 37 ) {
+            Player.turnLeft(0.05);
+        }
+        else if ( event.which == 37 ) {
+            Player.turnLeft(0.05);
         }
     });
 
@@ -45,7 +39,7 @@ Main.particleSystemChangeCallback = function ( InputSettings ) {
     GameEngine.removeAnimations();
 
     // Get rid of old models
-    // Scene.removeObjects();
+    Scene.removeObjects();
 
     // If we specified animated model, then lets load it first, THIS STAYS THE SAME
     if ( InputSettings.animatedModelName ) {
@@ -58,7 +52,8 @@ Main.particleSystemChangeCallback = function ( InputSettings ) {
 
     var updater     = new InputSettings.updaterFunction ( InputSettings.updaterSettings ); // STAYS THE SAME
 
-    var target     = new Target ( { // WE CHANGED THIS
+    var emitter     = new Emitter ( { // WE CHANGED THIS
+        numObjects:    InputSettings.numObjects, 
         initialize:    initializer,                  // initializer object
         update:        updater,                      // updater object
         material:      InputSettings.particleMaterial,
@@ -67,13 +62,13 @@ Main.particleSystemChangeCallback = function ( InputSettings ) {
     } );
 
 
-    GameEngine.addObject ( target );
+    GameEngine.addObject ( emitter );
 
     // Add new particle system
     GameEngine.start();
 
     // Add the particle system
-    for ( var i = 0 ; i < 0 ; ++i ) {
+    for ( var i = 0 ; i < GameEngine._objects.length ; ++i ) {
         Scene.addObject( GameEngine.getDrawableObjects( i ) );
     }
 
