@@ -30,6 +30,8 @@ Player.putDownItem = function() {
 }
 
 Player.moveForward = function(amount) {
+	if (amount == 0) return;
+
 	var a = new THREE.Euler( Player.orientation[0], Player.orientation[1], Player.orientation[2], 'XYZ' );
 	var b = new THREE.Vector3(0,0,-1);
 	b.applyEuler(a);
@@ -39,9 +41,7 @@ Player.moveForward = function(amount) {
 	newPosition[1] = this.position[1] + amount*b.y;
 	newPosition[2] = this.position[2] + amount*b.z;
 
-	// console.log(SystemSettings.level0.walls[0].position);
-
-	if (Game.inBounds(newPosition)) { // check if in bounds
+	if (Game.inBounds(newPosition) && Game.noWall(this.position, newPosition)) { // check if in bounds
 		// actually move since in bounds
 		this.position[0] = newPosition[0];
 		this.position[1] = newPosition[1];
@@ -49,9 +49,14 @@ Player.moveForward = function(amount) {
 
 		Renderer._camera.position.set(this.position[0],this.position[1],this.position[2]);
 	}
+	else {
+		this.moveForward(amount - 1);
+	}
 }
 
 Player.moveBackward = function(amount) {
+	if (amount == 0) return;
+
 	var a = new THREE.Euler( Player.orientation[0], Player.orientation[1], Player.orientation[2], 'XYZ' );
 	var b = new THREE.Vector3(0,0,1);
 	b.applyEuler(a); 
@@ -61,13 +66,19 @@ Player.moveBackward = function(amount) {
 	newPosition[1] = this.position[1] + amount*b.y;
 	newPosition[2] = this.position[2] + amount*b.z;
 
-	if (Game.inBounds(newPosition)) { // check if in bounds
+	console.log("current position:");
+	console.log(this.position);
+
+	if (Game.inBounds(newPosition) && Game.noWall(this.position, newPosition)) { // check if in bounds
 		// actually move since in bounds
 		this.position[0] = newPosition[0];
 		this.position[1] = newPosition[1];
 		this.position[2] = newPosition[2];
 
 		Renderer._camera.position.set(this.position[0],this.position[1],this.position[2]);
+	}
+	else {
+		this.moveBackward(amount - 1);
 	}
 }
 
