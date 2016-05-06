@@ -94,12 +94,13 @@ SystemSettings.level0 = {
     walls         : [],
     createScene : function () {
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
-        var phong     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+        var phongGray     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+          var phongGreen     = new THREE.MeshPhongMaterial( {color: 0x003200, emissive: 0x222222, side: THREE.DoubleSide } );
 
         var box_geo   = new THREE.BoxGeometry(10,30,10)
 
-        var plane     = new THREE.Mesh( plane_geo, phong );
-        var box       = new THREE.Mesh( box_geo, phong );
+        var plane     = new THREE.Mesh( plane_geo, phongGreen );
+        var box       = new THREE.Mesh( box_geo, phongGray );
         box.position.set( 0.0, 15.0, 0.0 );
 
         plane.rotation.x = -1.57;
