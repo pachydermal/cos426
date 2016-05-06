@@ -222,24 +222,24 @@ SystemSettings.level1 = {
     numObjects:         1,
 
     // Initialization
-    initializerFunction : FountainInitializer,
+    initializerFunction : FriendInitializer,
     initializerSettings : {
-        sphere:   new THREE.Vector4 ( 0.0, 30.0, 0.0, 1.0 ),
+        sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
         velocity: new THREE.Vector3 ( 0.0, 30.0, 0.0),
-        lifetime: 7,
-        size:     5.0,
+        lifetime: 5,
+        size:     10.0,
     },
 
     // Update
-    updaterFunction : EulerUpdater,
+    updaterFunction : FriendUpdater,
     updaterSettings : {
         externalForces : {
-            gravity :     new THREE.Vector3( 0, -20, 0),
+            gravity :     new THREE.Vector3( 0, 0, 0),
             attractors : [],
         },
         collidables: {
-            sinkPlanes : [ { plane : new THREE.Vector4( 0, 1, 0, 0 ) } ],
+            bouncePlanes: [ {plane : new THREE.Vector4( 0, 1, 0, 0 ), damping : 0.8 } ],
         },
     },
 
@@ -310,24 +310,24 @@ SystemSettings.level2 = {
     numObjects:         1,
 
     // Initialization
-    initializerFunction : FountainInitializer,
+    initializerFunction : FriendInitializer,
     initializerSettings : {
-        sphere:   new THREE.Vector4 ( 0.0, 30.0, 0.0, 1.0 ),
+        sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
         velocity: new THREE.Vector3 ( 0.0, 30.0, 0.0),
-        lifetime: 7,
-        size:     5.0,
+        lifetime: 5,
+        size:     10.0,
     },
 
     // Update
-    updaterFunction : EulerUpdater,
+    updaterFunction : FriendUpdater,
     updaterSettings : {
         externalForces : {
-            gravity :     new THREE.Vector3( 0, -20, 0),
+            gravity :     new THREE.Vector3( 0, 0, 0),
             attractors : [],
         },
         collidables: {
-            sinkPlanes : [ { plane : new THREE.Vector4( 0, 1, 0, 0 ) } ],
+            bouncePlanes: [ {plane : new THREE.Vector4( 0, 1, 0, 0 ), damping : 0.8 } ],
         },
     },
 
@@ -397,24 +397,24 @@ SystemSettings.level3 = {
     numObjects:         1,
     
     // Initialization
-    initializerFunction : FountainInitializer,
+    initializerFunction : FriendInitializer,
     initializerSettings : {
-        sphere:   new THREE.Vector4 ( 0.0, 30.0, 0.0, 1.0 ),
+        sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
         velocity: new THREE.Vector3 ( 0.0, 30.0, 0.0),
-        lifetime: 7,
-        size:     5.0,
+        lifetime: 5,
+        size:     10.0,
     },
 
     // Update
-    updaterFunction : EulerUpdater,
+    updaterFunction : FriendUpdater,
     updaterSettings : {
         externalForces : {
-            gravity :     new THREE.Vector3( 0, -20, 0),
+            gravity :     new THREE.Vector3( 0, 0, 0),
             attractors : [],
         },
         collidables: {
-            sinkPlanes : [ { plane : new THREE.Vector4( 0, 1, 0, 0 ) } ],
+            bouncePlanes: [ {plane : new THREE.Vector4( 0, 1, 0, 0 ), damping : 0.8 } ],
         },
     },
 

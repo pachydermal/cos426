@@ -288,7 +288,8 @@ function Emitter ( opts ) {
     // Allocate memory for the particles
     for ( var attributeKey in this._attributeInformation ) {
         // get info from attributeInformation, required to initialize correctly sized arrays
-        console.log(this._attributeInformation);
+        // console.log(this._attributeInformation);
+        
         var attributeLength = this._attributeInformation[ attributeKey ];
         var attributeArray = new Float32Array( this._numObjects * attributeLength );
 
