@@ -35,22 +35,27 @@ Game.timesUp = function() {
 // What defines the completion of a level? Returns true if the level has been completed, false otherwise. 
 // THIS NEEDS TO BE FILLED IN
 Game.levelCompleted = function() {
+	var bounds = 25;
 	
-	if (Player.position[0] == Goal.position[0] && Player.position[1] == Goal.position[1] && Player.position[2] == Goal.position[2]) {
-		return true;
+	if (Player.position[0] <= Goal.position[0] + bounds && Player.position[0] >= Goal.position[0] - bounds) {
+		if (Player.position[1] <= Goal.position[1] + bounds && Player.position[1] >= Goal.position[1] - bounds) {
+			if (Player.position[2] <= Goal.position[2] + bounds && Player.position[2] >= Goal.position[2] - bounds) {
+				return true;
+			}
+		}
 	}
-	else return false;
+	return false;
 }
 
 // Checks if given position is within bounds, bounds are INCLUSIVE
 // NEEDS TO BE FILLED IN
 Game.inBounds = function( position ) {
-	var xMin = -201;
-	var xMax = 201;
-	var yMin = -201;
-	var yMax = 201;
-	var zMin = -201;
-	var zMax = 201;
+	var xMin = -301;
+	var xMax = 301;
+	var yMin = -301;
+	var yMax = 301;
+	var zMin = -301;
+	var zMax = 301;
 
 	if (position[0] <= xMax && position[0] >= xMin) { // check x values
 		if (position[1] <= yMax && position[1] >= yMin) { // check y values

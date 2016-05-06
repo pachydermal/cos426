@@ -1,7 +1,7 @@
 var Player = Player || {};
 
 Player.init = function() {
-	Player.position = [0,0,200];
+	Player.position = [0,10,150]; // JENNIE: being higher up wastes less space on bottom
 	Player.orientation = [0,0,0];
 	Player.holdingItem = false;
 }
@@ -38,6 +38,8 @@ Player.moveForward = function(amount) {
 	newPosition[0] = this.position[0] + amount*b.x;
 	newPosition[1] = this.position[1] + amount*b.y;
 	newPosition[2] = this.position[2] + amount*b.z;
+
+	// console.log(SystemSettings.level0.walls[0].position);
 
 	if (Game.inBounds(newPosition)) { // check if in bounds
 		// actually move since in bounds
