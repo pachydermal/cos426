@@ -103,6 +103,108 @@ Game.noWall = function( position, newPosition ) {
 			}
 		}
 	}
+	else if (this.level == 1) {
+		for (var i  = 0; i < SystemSettings.level1.walls.length; i++) {
+			SystemSettings.level1.walls[i].geometry.computeBoundingBox();
+			var bBox = SystemSettings.level1.walls[i].geometry.boundingBox.clone();
+			var boxPos = SystemSettings.level1.walls[i].position.clone();
+
+			// moving to correct position
+			bBox.min.x = bBox.min.x + boxPos.x;
+			bBox.max.x = bBox.max.x + boxPos.x;
+
+			bBox.min.z = bBox.min.z + boxPos.z;
+			bBox.max.z = bBox.max.z + boxPos.z;
+
+			// fix y because don't care about
+			bBox.min.y = position[1];
+			bBox.max.y = position[1];
+
+			var origin = new THREE.Vector3(position[0], position[1], position[2]);
+			var dest = new THREE.Vector3(newPosition[0], newPosition[1], newPosition[2]);
+			var dir = new THREE.Vector3().subVectors(dest, origin);
+			var ray = new THREE.Ray(origin, dir);
+
+			var intersect = ray.intersectBox(bBox);
+
+			if (intersect !== null) {
+				if (origin.distanceTo(intersect) > 0) {
+					// but the intersection point must be closer than the walk distance
+					if (origin.distanceTo(dest) > origin.distanceTo(intersect)) {
+						return false;
+					}
+				}
+			}
+		}
+	}
+	else if (this.level == 2) {
+		for (var i  = 0; i < SystemSettings.level2.walls.length; i++) {
+			SystemSettings.level2.walls[i].geometry.computeBoundingBox();
+			var bBox = SystemSettings.level2.walls[i].geometry.boundingBox.clone();
+			var boxPos = SystemSettings.level2.walls[i].position.clone();
+
+			// moving to correct position
+			bBox.min.x = bBox.min.x + boxPos.x;
+			bBox.max.x = bBox.max.x + boxPos.x;
+
+			bBox.min.z = bBox.min.z + boxPos.z;
+			bBox.max.z = bBox.max.z + boxPos.z;
+
+			// fix y because don't care about
+			bBox.min.y = position[1];
+			bBox.max.y = position[1];
+
+			var origin = new THREE.Vector3(position[0], position[1], position[2]);
+			var dest = new THREE.Vector3(newPosition[0], newPosition[1], newPosition[2]);
+			var dir = new THREE.Vector3().subVectors(dest, origin);
+			var ray = new THREE.Ray(origin, dir);
+
+			var intersect = ray.intersectBox(bBox);
+
+			if (intersect !== null) {
+				if (origin.distanceTo(intersect) > 0) {
+					// but the intersection point must be closer than the walk distance
+					if (origin.distanceTo(dest) > origin.distanceTo(intersect)) {
+						return false;
+					}
+				}
+			}
+		}
+	}
+	else if (this.level == 3) {
+		for (var i  = 0; i < SystemSettings.level3.walls.length; i++) {
+			SystemSettings.level3.walls[i].geometry.computeBoundingBox();
+			var bBox = SystemSettings.level3.walls[i].geometry.boundingBox.clone();
+			var boxPos = SystemSettings.level3.walls[i].position.clone();
+
+			// moving to correct position
+			bBox.min.x = bBox.min.x + boxPos.x;
+			bBox.max.x = bBox.max.x + boxPos.x;
+
+			bBox.min.z = bBox.min.z + boxPos.z;
+			bBox.max.z = bBox.max.z + boxPos.z;
+
+			// fix y because don't care about
+			bBox.min.y = position[1];
+			bBox.max.y = position[1];
+
+			var origin = new THREE.Vector3(position[0], position[1], position[2]);
+			var dest = new THREE.Vector3(newPosition[0], newPosition[1], newPosition[2]);
+			var dir = new THREE.Vector3().subVectors(dest, origin);
+			var ray = new THREE.Ray(origin, dir);
+
+			var intersect = ray.intersectBox(bBox);
+
+			if (intersect !== null) {
+				if (origin.distanceTo(intersect) > 0) {
+					// but the intersection point must be closer than the walk distance
+					if (origin.distanceTo(dest) > origin.distanceTo(intersect)) {
+						return false;
+					}
+				}
+			}
+		}
+	}
 	return true;
 }
 
