@@ -432,5 +432,73 @@ SystemSettings.level3 = {
         plane.position.y = 0;
 
         Scene.addObject( plane );
+        Scene.addObject( box );
+
+        // creating sceond campus center
+        this.walls[0] = SystemSettings.createWall(350, 10, -135, 235);
+        Scene.addObject( this.walls[0] );
+
+        this.walls[1] = SystemSettings.createWall(10, 500, 45, -10);
+        Scene.addObject( this.walls[1] );
+
+        this.walls[2] = SystemSettings.createWall(350, 10, -135, -255);
+        Scene.addObject( this.walls[2] );
+
+        this.walls[3] = SystemSettings.createWall(10, 480, -305, -10);
+        Scene.addObject( this.walls[3] );
+
+        this.walls[4] = SystemSettings.createWall(10, 20, -45, 220);
+        Scene.addObject( this.walls[4] );
+
+        this.walls[5] = SystemSettings.createWall(10, 20, -45, 160);
+        Scene.addObject( this.walls[5] );
+
+        this.walls[6] = SystemSettings.createWall(220, 10, -150, 145);
+        Scene.addObject( this.walls[6] );
+
+        this.walls[7] = SystemSettings.createWall(10, 80, -205, 60);
+        Scene.addObject( this.walls[7] );
+
+        this.walls[8] = SystemSettings.createWall(10, 80, -155, 60);
+        Scene.addObject( this.walls[8] );
+
+        this.walls[9] = SystemSettings.createWall(70, 10, -75, 95);
+        Scene.addObject( this.walls[9] );
+
+        this.walls[10] = SystemSettings.createWall(10, 60, -45, 60);
+        Scene.addObject( this.walls[10] );
+
+        this.walls[11] = SystemSettings.createWall(70, 10, -75, 25);
+        Scene.addObject( this.walls[11] );
+
+        this.walls[12] = SystemSettings.createWall(30, 10, -285, -25);
+        Scene.addObject( this.walls[12] );
+
+        this.walls[13] = SystemSettings.createWall(30, 10, -215, -25);
+        Scene.addObject( this.walls[13] );
+
+        this.walls[14] = SystemSettings.createWall(10, 60, -205, -60);
+        Scene.addObject( this.walls[14] );
+
+        this.walls[15] = SystemSettings.createWall(130, 10, -25, -35);
+        Scene.addObject( this.walls[15] );
+
+        this.walls[16] = SystemSettings.createWall(130, 10, -25, -95);
+        Scene.addObject( this.walls[16] );
+
+        this.walls[17] = SystemSettings.createWall(10, 70, -175, -255);
+        Scene.addObject( this.walls[17] );
+
+        this.walls[18] = SystemSettings.createWall(30, 10, -235, -145);
+        Scene.addObject( this.walls[18] );
+
+        this.walls[19] = SystemSettings.createWall(50, 10, -155, -145);
+        Scene.addObject( this.walls[19] );
+
+        this.walls[20] = SystemSettings.createWall(10, 60, -135, -180);
+        Scene.addObject( this.walls[20] );
+
+        this.walls[21] = SystemSettings.createWall(10, 70, -35, -175);
+        Scene.addObject( this.walls[21] );
     },
 };
