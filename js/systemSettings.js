@@ -58,7 +58,7 @@ SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// Level 0
+// Level 0: NO GRAVITY - IT CREATES BAD ARTIFACTS/MOVEMENTS
 ////////////////////////////////////////////////////////////////////////////////
 
 SystemSettings.level0 = {
@@ -68,7 +68,7 @@ SystemSettings.level0 = {
     numObjects:         1,
 
     // Initialization
-    initializerFunction : FriendInitializer,
+    initializerFunction : TargetInitializer0,
     initializerSettings : {
         sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
@@ -78,7 +78,7 @@ SystemSettings.level0 = {
     },
 
     // Update
-    updaterFunction : FriendUpdater,
+    updaterFunction : TargetUpdater0,
     updaterSettings : {
         externalForces : {
             gravity :     new THREE.Vector3( 0, 0, 0),
@@ -222,7 +222,7 @@ SystemSettings.level1 = {
     numObjects:         1,
 
     // Initialization
-    initializerFunction : FriendInitializer,
+    initializerFunction : TargetInitializer1,
     initializerSettings : {
         sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
@@ -232,7 +232,8 @@ SystemSettings.level1 = {
     },
 
     // Update
-    updaterFunction : FriendUpdater,
+    updaterFunction : TargetUpdater1,
+
     updaterSettings : {
         externalForces : {
             gravity :     new THREE.Vector3( 0, 0, 0),
@@ -310,7 +311,7 @@ SystemSettings.level2 = {
     numObjects:         1,
 
     // Initialization
-    initializerFunction : FriendInitializer,
+    initializerFunction : TargetInitializer2,
     initializerSettings : {
         sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
@@ -320,7 +321,7 @@ SystemSettings.level2 = {
     },
 
     // Update
-    updaterFunction : FriendUpdater,
+    updaterFunction : TargetUpdater2,
     updaterSettings : {
         externalForces : {
             gravity :     new THREE.Vector3( 0, 0, 0),
@@ -395,9 +396,9 @@ SystemSettings.level3 = {
     // Particle material
     particleMaterial :  SystemSettings.standardMaterial,
     numObjects:         1,
-    
+
     // Initialization
-    initializerFunction : FriendInitializer,
+    initializerFunction : TargetInitializer3,
     initializerSettings : {
         sphere:   new THREE.Vector4 ( 0.0, 5.0, 0.0, 1.0 ),
         color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
@@ -407,7 +408,7 @@ SystemSettings.level3 = {
     },
 
     // Update
-    updaterFunction : FriendUpdater,
+    updaterFunction : TargetUpdater3,
     updaterSettings : {
         externalForces : {
             gravity :     new THREE.Vector3( 0, 0, 0),
