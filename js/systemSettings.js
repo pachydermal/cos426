@@ -244,6 +244,178 @@ SystemSettings.level1 = {
     // Scene
     maxParticles :  5000,
     particlesFreq : 500,
+    walls: [],
+    createScene : function () {
+        var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
+        var phong     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+
+        var box_geo   = new THREE.BoxGeometry(10,30,10)
+
+        var plane     = new THREE.Mesh( plane_geo, phong );
+        var box       = new THREE.Mesh( box_geo, phong );
+        box.position.set( 0.0, 15.0, 0.0 );
+
+        plane.rotation.x = -1.57;
+        plane.position.y = 0;
+
+        Scene.addObject( plane );
+        Scene.addObject( box );
+
+        // creating eating club
+        this.walls[0] = SystemSettings.createWall(10, 290, -195, 15);
+        Scene.addObject( this.walls[0] );
+
+        this.walls[1] = SystemSettings.createWall(410, 10, 5, 165);
+        Scene.addObject( this.walls[1] );
+
+        this.walls[2] = SystemSettings.createWall(10, 140, -55, 90);
+        Scene.addObject( this.walls[2] );
+
+        this.walls[3] = SystemSettings.createWall(10, 100, 35, 110);
+        Scene.addObject( this.walls[3] );
+
+        this.walls[4] = SystemSettings.createWall(10, 300, 205, 10);
+        Scene.addObject( this.walls[4] );
+
+        this.walls[5] = SystemSettings.createWall(120, 10, 140, 85);
+        Scene.addObject( this.walls[5] );
+
+        this.walls[6] = SystemSettings.createWall(170, 10, 115, 15);
+        Scene.addObject( this.walls[6] );
+
+        this.walls[7] = SystemSettings.createWall(400, 10, 0, -135);
+        Scene.addObject( this.walls[7] );
+
+        this.walls[8] = SystemSettings.createWall(10, 100, 55, -80);
+        Scene.addObject( this.walls[8] );
+
+        this.walls[9] = SystemSettings.createWall(10, 110, -55, -75);
+        Scene.addObject( this.walls[9] );
+
+        this.walls[10] = SystemSettings.createWall(90, 10, -105, -55);
+        Scene.addObject( this.walls[10] );
+
+        this.walls[11] = SystemSettings.createWall(50, 10, -25, -35);
+        Scene.addObject( this.walls[11] );
+    },
+};
+
+SystemSettings.level2 = {
+
+    // Particle material
+    particleMaterial :  SystemSettings.standardMaterial,
+
+    // Initialization
+    initializerFunction : FountainInitializer,
+    initializerSettings : {
+        sphere:   new THREE.Vector4 ( 0.0, 30.0, 0.0, 1.0 ),
+        color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
+        velocity: new THREE.Vector3 ( 0.0, 30.0, 0.0),
+        lifetime: 7,
+        size:     5.0,
+    },
+
+    // Update
+    updaterFunction : EulerUpdater,
+    updaterSettings : {
+        externalForces : {
+            gravity :     new THREE.Vector3( 0, -20, 0),
+            attractors : [],
+        },
+        collidables: {
+            sinkPlanes : [ { plane : new THREE.Vector4( 0, 1, 0, 0 ) } ],
+        },
+    },
+
+    // Scene
+    maxParticles :  5000,
+    particlesFreq : 500,
+    walls: [],
+    createScene : function () {
+        var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
+        var phong     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+
+        var box_geo   = new THREE.BoxGeometry(10,30,10)
+
+        var plane     = new THREE.Mesh( plane_geo, phong );
+        var box       = new THREE.Mesh( box_geo, phong );
+        box.position.set( 0.0, 15.0, 0.0 );
+
+        plane.rotation.x = -1.57;
+        plane.position.y = 0;
+
+        Scene.addObject( plane );
+        Scene.addObject( box );
+
+        // creating eating club
+        this.walls[0] = SystemSettings.createWall(10, 290, -195, 15);
+        Scene.addObject( this.walls[0] );
+
+        this.walls[1] = SystemSettings.createWall(410, 10, 5, 165);
+        Scene.addObject( this.walls[1] );
+
+        this.walls[2] = SystemSettings.createWall(10, 140, -55, 90);
+        Scene.addObject( this.walls[2] );
+
+        this.walls[3] = SystemSettings.createWall(10, 100, 35, 110);
+        Scene.addObject( this.walls[3] );
+
+        this.walls[4] = SystemSettings.createWall(10, 300, 205, 10);
+        Scene.addObject( this.walls[4] );
+
+        this.walls[5] = SystemSettings.createWall(120, 10, 140, 85);
+        Scene.addObject( this.walls[5] );
+
+        this.walls[6] = SystemSettings.createWall(170, 10, 115, 15);
+        Scene.addObject( this.walls[6] );
+
+        this.walls[7] = SystemSettings.createWall(400, 10, 0, -135);
+        Scene.addObject( this.walls[7] );
+
+        this.walls[8] = SystemSettings.createWall(10, 100, 55, -80);
+        Scene.addObject( this.walls[8] );
+
+        this.walls[9] = SystemSettings.createWall(10, 110, -55, -75);
+        Scene.addObject( this.walls[9] );
+
+        this.walls[10] = SystemSettings.createWall(90, 10, -105, -55);
+        Scene.addObject( this.walls[10] );
+
+        this.walls[11] = SystemSettings.createWall(50, 10, -25, -35);
+        Scene.addObject( this.walls[11] );
+    },
+};
+
+SystemSettings.level3 = {
+
+    // Particle material
+    particleMaterial :  SystemSettings.standardMaterial,
+
+    // Initialization
+    initializerFunction : FountainInitializer,
+    initializerSettings : {
+        sphere:   new THREE.Vector4 ( 0.0, 30.0, 0.0, 1.0 ),
+        color:    new THREE.Vector4 ( 0.0, 0.0, 1.0, 1.0 ),
+        velocity: new THREE.Vector3 ( 0.0, 30.0, 0.0),
+        lifetime: 7,
+        size:     5.0,
+    },
+
+    // Update
+    updaterFunction : EulerUpdater,
+    updaterSettings : {
+        externalForces : {
+            gravity :     new THREE.Vector3( 0, -20, 0),
+            attractors : [],
+        },
+        collidables: {
+            sinkPlanes : [ { plane : new THREE.Vector4( 0, 1, 0, 0 ) } ],
+        },
+    },
+
+    // Scene
+    maxParticles :  5000,
+    particlesFreq : 500,
     createScene : function () {
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
         var phong     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
