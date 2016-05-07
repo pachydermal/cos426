@@ -1,8 +1,9 @@
 var Player = Player || {};
 
 Player.init = function() {
-	Player.position = [0,10,150]; // JENNIE: being higher up wastes less space on bottom
-	Player.orientation = [0,0,0];
+	var rand = Math.random() * 0.1 - 0.05;
+	Player.position = [0,10,149]; // JENNIE: being higher up wastes less space on bottom
+	Player.orientation = [0,rand,0];
 	Player.holdingItem = false;
 }
 

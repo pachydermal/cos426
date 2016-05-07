@@ -49,7 +49,14 @@ SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
     var yWidth = 40; // standard height for walls
     var yPos = yWidth / 2; // standard center y for walls
 
+    // wall texture
+    var texture = new THREE.TextureLoader().load( "textures/grasslight-big.jpg" );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set( 4, 4 );
+
     var material = new THREE.MeshNormalMaterial( {wireframe: false });
+    // var material = new THREE.MeshStandardMaterial( { color: 0x550000, roughness: 0.1, metalness: 1.0 } );
 
     var wall_geo = new THREE.BoxGeometry(xWidth, yWidth, zWidth);
     var wall = new THREE.Mesh(wall_geo, material);
@@ -94,9 +101,15 @@ SystemSettings.level0 = {
     particlesFreq : 500,
     walls         : [],
     createScene : function () {
+        // grass texture of plane
+        var texture = new THREE.TextureLoader().load( "textures/grasslight-big.jpg" );
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 4, 4 );
+
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
         var phongGray     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
-          var phongGreen     = new THREE.MeshPhongMaterial( {color: 0x003200, emissive: 0x222222, side: THREE.DoubleSide } );
+        var phongGreen     = new THREE.MeshPhongMaterial( {color: 0x003200, emissive: 0x222222, side: THREE.DoubleSide, map: texture} );
 
         var box_geo   = new THREE.BoxGeometry(10,30,10)
 
