@@ -142,7 +142,9 @@ button {
 
 
 
-
+#storyline0-0 {
+    display: none;
+}
 
 #storyline0-1 {
     display: none;
@@ -161,6 +163,30 @@ button {
 }
 
 #storyline1-2 {
+    display: none;
+}
+
+#storyline2-0 {
+    display: none;
+}
+
+#storyline2-1 {
+    display: none;
+}
+
+#storyline2-2 {
+    display: none;
+}
+
+#storyline3-0 {
+    display: none;
+}
+
+#storyline3-1 {
+    display: none;
+}
+
+#storyline3-2 {
     display: none;
 }
 
