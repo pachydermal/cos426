@@ -225,8 +225,17 @@ Game.goToLevel = function(level) {
 	if (level == 0) {
 		var nextLevel = SystemSettings.level0;
 	}
-	else {
+	else if (level == 1) {
 		var nextLevel = SystemSettings.level1;
+	}
+	else if (level == 2) {
+		var nextLevel = SystemSettings.level2;
+	}
+	else if (level == 3) {
+		var nextLevel = SystemSettings.level3;
+	}
+	else {
+		var nextLevel = SystemSettings.level0;
 	}
 
 	Main.particleSystemChangeCallback( nextLevel)
