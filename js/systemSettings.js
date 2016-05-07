@@ -49,17 +49,127 @@ SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
     var yWidth = 40; // standard height for walls
     var yPos = yWidth / 2; // standard center y for walls
 
-    // wall texture
-    var texture = new THREE.TextureLoader().load( "textures/grasslight-big.jpg" );
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.set( 4, 4 );
+    var ratio = 20;
 
-    var material = new THREE.MeshNormalMaterial( {wireframe: false });
-    // var material = new THREE.MeshStandardMaterial( { color: 0x550000, roughness: 0.1, metalness: 1.0 } );
+    // wall texture
+    var textureLong;
+    var textureShort;
+    if (Game.level == 0) {
+        textureLong = new THREE.TextureLoader().load( "textures/wall.jpg" );  
+        textureShort = new THREE.TextureLoader().load( "textures/wall.jpg" );
+    } 
+    else if (Game.level == 1 || Game.level == 2) {
+        textureLong = new THREE.TextureLoader().load( "textures/terrace.jpg" );  
+        textureShort = new THREE.TextureLoader().load( "textures/terrace.jpg" );
+    } 
+    else {
+        textureLong = new THREE.TextureLoader().load( "textures/wall.jpg" );  
+        textureShort = new THREE.TextureLoader().load( "textures/wall.jpg" );
+    }
+
+    textureLong.wrapS = THREE.RepeatWrapping;
+    textureLong.wrapT = THREE.RepeatWrapping;
+    textureShort.wrapS = THREE.RepeatWrapping;
+    textureShort.wrapT = THREE.RepeatWrapping;
+
+    // Create an array of materials to be used in a cube, one for each side
+    var cubeMaterialArray = [];
+    var cubeMaterials;
+
+    if (xWidth == 10) { // x is the short side
+        // NAMING IS BACKWARDS, WHOOOPS
+        textureLong.repeat.set( xWidth/ratio, yWidth/ratio );
+        textureShort.repeat.set( zWidth/ratio, yWidth/ratio );
+
+        if (Game.level == 0) {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // red: x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // orange  x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // blue  z
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // purple  z
+
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );
+        } 
+        else if (Game.level == 1 || Game.level == 2) {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            var randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureShort } ) ); // red: x
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureShort } ) ); // orange  x
+
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureLong } ) ); // blue  z
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureLong } ) ); // purple  z
+
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );
+        } 
+        else {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // red: x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // orange  x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // blue  z
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // purple  z
+
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );  
+        }
+    } 
+    else { // z is the short side
+        // NAMING IS BACKWARDS
+        textureLong.repeat.set( zWidth/ratio, yWidth/ratio );
+        textureShort.repeat.set( xWidth/ratio, yWidth/ratio ); 
+
+        if (Game.level == 0) {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // red: x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // orange  x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // blue  z
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // purple  z
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );            
+        } 
+        else if (Game.level == 1 || Game.level == 2) {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            var randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureLong } ) ); // red: x
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureLong } ) ); // orange  x
+
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureShort } ) ); // blue  z
+            randColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: randColor, map: textureShort } ) ); // purple  z
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );
+        } 
+        else {
+            // order to add materials: x+,x-,y+,y-,z+,z-
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // red: x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureLong } ) ); // orange  x
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0xffff33 } ) ); // yellow
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { color: 0x33ff33 } ) ); // green
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // blue  z
+            cubeMaterialArray.push( new THREE.MeshPhongMaterial( { map: textureShort } ) ); // purple  z
+            cubeMaterials = new THREE.MeshFaceMaterial( cubeMaterialArray );   
+        }
+    }
+    
+
+    // var material = new THREE.MeshNormalMaterial( {wireframe: false });
+    // var material = new THREE.MeshLambertMaterial( {map: texture });
 
     var wall_geo = new THREE.BoxGeometry(xWidth, yWidth, zWidth);
-    var wall = new THREE.Mesh(wall_geo, material);
+    var wall = new THREE.Mesh(wall_geo, cubeMaterials);
     wall.position.set( xPos, yPos, zPos);
     return wall;
 };
@@ -105,7 +215,7 @@ SystemSettings.level0 = {
         var texture = new THREE.TextureLoader().load( "textures/grasslight-big.jpg" );
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
-        texture.repeat.set( 4, 4 );
+        texture.repeat.set( 20, 20 );
 
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
         var phongGray     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
@@ -263,13 +373,20 @@ SystemSettings.level1 = {
     walls: [],
 
     createScene : function () {
+        // wood texture of plane
+        var texture = new THREE.TextureLoader().load( "textures/wood_floor.jpg" );
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.wrapT = THREE.RepeatWrapping;
+        texture.repeat.set( 50, 50 );
+
         var plane_geo = new THREE.PlaneBufferGeometry( 1000, 1000, 1, 1 );
-        var phong     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+        var phongGray     = new THREE.MeshPhongMaterial( {color: 0x444444, emissive: 0x222222, side: THREE.DoubleSide } );
+        var floor_material     = new THREE.MeshPhongMaterial( {emissive: 0x222222, side: THREE.DoubleSide, map: texture} );
 
         var box_geo   = new THREE.BoxGeometry(10,30,10)
 
-        var plane     = new THREE.Mesh( plane_geo, phong );
-        var box       = new THREE.Mesh( box_geo, phong );
+        var plane     = new THREE.Mesh( plane_geo, floor_material );
+        var box       = new THREE.Mesh( box_geo, phongGray );
         box.position.set( 0.0, 15.0, 0.0 );
 
         plane.rotation.x = -1.57;
