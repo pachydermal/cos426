@@ -97,6 +97,7 @@ Game.noWall = function( position, newPosition ) {
 				if (origin.distanceTo(intersect) > 0) {
 					// but the intersection point must be closer than the walk distance
 					if (origin.distanceTo(dest) > origin.distanceTo(intersect)) {
+						
 						return false;
 					}
 				}

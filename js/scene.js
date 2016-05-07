@@ -28,7 +28,6 @@ Scene.setupLighting = function() {
 
     this._light[1]    = new THREE.PointLight( 0xffffff, 2.0, 500.0 );
     this._light[1].position.set( 0, 250, 0 );
-
     Scene._scene.add( this._light[1]  );
 };
 
