@@ -156,12 +156,12 @@ SystemSettings.level0 = {
         var mtlLoader = new THREE.MTLLoader();
         mtlLoader.setBaseUrl( 'animated_models/Batman/Texture/' );
         mtlLoader.setPath( 'animated_models/Batman/' );
-        mtlLoader.load( 'BatmanArmoured.mtl', function( materials ) {
+        mtlLoader.load( 'Batman.mtl', function( materials ) {
             materials.preload();
             var objLoader = new THREE.OBJLoader();
             objLoader.setMaterials( materials );
             objLoader.setPath( 'animated_models/Batman/' );
-            objLoader.load( 'BatmanArmoured.obj', function ( object ) {
+            objLoader.load( 'Batman.obj', function ( object ) {
                 object.position.set(0, 0, 100);
                 object.scale.multiplyScalar(0.1);
                 //object.rotation.y = 3 * Math.PI/2;
