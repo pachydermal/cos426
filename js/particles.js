@@ -13,14 +13,14 @@ var ParticleEngine = ParticleEngine || {
 ParticleEngine.create = function () {
     this._particles      = new THREE.BufferGeometry();// initFunction( count, this._pool );
     var sprite = THREE.TextureLoader( "images/spark.png" );
-    this._material       = new THREE.PointCloudMaterial( { size: 15.0,
+    this._material       = new THREE.PointsMaterial( { size: 15.0,
         map: sprite,
         // alphaTest : 0.5,
         blending: THREE.NormalBlending, //THREE.AdditiveBlending,
         depthWrite: false,
         transparent: true,
         vertexColors: THREE.VertexColors } );
-    this._particleCloud  = new THREE.PointCloud( this._particles, this._material );
+    this._particleCloud  = new THREE.Points( this._particles, this._material );
 };
 
 ParticleEngine.initParticle = function ( i, positions, velocities, colors, sizes, lifetimes ) {
