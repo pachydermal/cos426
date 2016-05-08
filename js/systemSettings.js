@@ -142,18 +142,9 @@ SystemSettings.level0 = {
         plane.position.y = 0;
 
         Scene.addObject( plane );
-
-        // create goal
-        var goal_material = new THREE.MeshPhongMaterial( {color: 0xF2EA64, emissive: 0x222222, side: THREE.DoubleSide } );
-        var goal_geo = new THREE.BoxGeometry(4, 4, 4);
-        var goal = new THREE.Mesh(goal_geo, goal_material);
-        // goal.position.set(220, 2, -70);
-        //Scene.addObject( goal );
-
-        var objLoader = new THREE.OBJLoader();
-        var material = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
-
-        // model
+      
+        // goal: DANTE
+        var objLoader = new THREE.OBJLoader();  
         var onProgress = function ( xhr ) {
             if ( xhr.lengthComputable ) {
                 var percentComplete = xhr.loaded / xhr.total * 100;
