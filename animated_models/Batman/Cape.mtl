@@ -27,12 +27,12 @@ Kd 0.588 0.588 0.588
 Ks 1 1 1
 illum 2
 Ns 10
-map_Kd V2_Batman_Cape_D2.tga
-map_bump V2_Batman_Cape_N2.tga
-bump V2_Batman_Cape_N2.tga
-map_opacity V2_Batman_Cape_A2.tga
-map_d V2_Batman_Cape_A2.tga
+map_Kd V2_Batman_Cape_D2.png
+map_bump V2_Batman_Cape_N2.png
+bump V2_Batman_Cape_N2.png
+map_opacity V2_Batman_Cape_A2.png
+map_d V2_Batman_Cape_A2.png
 refl 
-map_kS V2_Batman_Cape_S2.tga
-map_kA V2_Batman_Cape_D2.tga
+map_kS V2_Batman_Cape_S2.png
+map_kA V2_Batman_Cape_D2.png
 map_Ns 
