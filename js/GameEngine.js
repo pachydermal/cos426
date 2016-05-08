@@ -312,7 +312,7 @@ function Emitter ( opts ) {
     this._backupArray = new Float32Array( this._numObjects * 4 );
 
     // Create the drawable particles - this is the object that three.js will use to draw stuff onto screen
-    this._drawableObjects = new THREE.PointCloud( this._objects, this._material );
+    this._drawableObjects = new THREE.Points( this._objects, this._material );
 
     return this;
 };
