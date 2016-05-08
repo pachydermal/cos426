@@ -153,6 +153,7 @@ SystemSettings.level0 = {
         var objLoader = new THREE.OBJLoader();
         var material = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
         objLoader.load( "animated_models/001.obj", function ( object ) {
+            object.scale.multiplyScalar(3);
             object.position.set(220, 2, -70);
             Scene.addObject( object );
         } );
