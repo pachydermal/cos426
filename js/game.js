@@ -5,7 +5,7 @@ Game.init = function() {
 	Game.storylinePage = 0; // page in the storyline for the current level
 	Game.playingMode = false; // if false, means not playing just scrolling through story/instructions
 					 	  	  // if true, mean's we're in playing mode
-	Game.numLevels = 2; // number of levels
+	Game.numLevels = 4; // number of levels
 
 	this.openStoryline(); // open the storyline on the web page 
 }

@@ -22,7 +22,7 @@ function getElement ( i, attrib ) {
 
     } else {
 
-        console.log( "Not handled attribute size for attribute: ", attrib );
+        // console.log( "Not handled attribute size for attribute: ", attrib );
         return undefined;
 
     }
@@ -75,7 +75,7 @@ function setElement ( i, attrib, val ) {
 
     } else {
 
-        console.log( "Not handled attribute size for attribute: ", attrib );
+        // console.log( "Not handled attribute size for attribute: ", attrib );
         return undefined;
 
     }

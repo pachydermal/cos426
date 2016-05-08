@@ -107,7 +107,7 @@ Gui.init = function ( meshChangeCallback, controlsChangeCallback, displayChangeC
     gc.textures.onChange( function( value ) {
         var emitters = ParticleEngine.getEmitters();
         for ( var i = 0 ; i < emitters.length ; i++ ) {
-            emitters[i]._material.uniforms.texture.value = new THREE.ImageUtils.loadTexture( 'images/' + value + '.png' );
+            emitters[i]._material.uniforms.texture.value = new THREE.TextureLoader( 'images/' + value + '.png' );
             emitters[i]._material.needsUpdate  = true;
         }
     } );
