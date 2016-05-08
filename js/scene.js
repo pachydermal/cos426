@@ -59,11 +59,6 @@ Scene.addObject = function ( object ) {
     // object.receiveShadow = false;
     Scene._scene.add( object );
     Scene._objects.push( object );
-    
-        var loader = new THREE.OBJLoader();
-    loader.load( "animated_models/001.obj", function ( object ) {
-        Scene._scene.add( object );
-    } );
 };
 
 Scene.removeObject = function ( object ) {
