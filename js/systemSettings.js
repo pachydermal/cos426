@@ -152,7 +152,7 @@ SystemSettings.level0 = {
 
         var objLoader = new THREE.OBJLoader();
         var material = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
-        
+
         // model
         var onProgress = function ( xhr ) {
             if ( xhr.lengthComputable ) {
@@ -163,15 +163,17 @@ SystemSettings.level0 = {
         var onError = function ( xhr ) { };
                 
         var mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setBaseUrl( 'animated_models/dante/' );
-        mtlLoader.setPath( 'animated_models/dante/' );
-        mtlLoader.load( '001.mtl', function( materials ) {
+        mtlLoader.setBaseUrl( 'animated_models/Batman/Texture/' );
+        mtlLoader.setPath( 'animated_models/Batman/' );
+        mtlLoader.load( 'BatmanArmoured.mtl', function( materials ) {
             materials.preload();
             var objLoader = new THREE.OBJLoader();
             objLoader.setMaterials( materials );
-            objLoader.setPath( 'animated_models/dante/' );
-            objLoader.load( '001.obj', function ( object ) {
-                object.position.set(220, 2, -70);
+            objLoader.setPath( 'animated_models/Batman/' );
+            objLoader.load( 'BatmanArmoured.obj', function ( object ) {
+                object.position.set(0, 0, 100);
+                object.scale.multiplyScalar(0.1);
+                //object.rotation.y = 3 * Math.PI/2;
                 Scene.addObject( object );
             }, onProgress, onError );
         });
