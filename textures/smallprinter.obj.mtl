@@ -1,0 +1,39 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v3.1.187496374)
+
+newmtl grey plastic
+Kd 0.368627 0.368627 0.368627
+Ka 0 0 0
+Ks 0 0 0
+Ke 0 0 0
+d 1
+Ns 76
+illum 2
+
+newmtl black plastic
+Kd 0.137255 0.137255 0.137255
+Ka 0 0 0
+Ks 0 0 0
+Ke 0 0 0
+d 1
+Ns 98
+illum 2
+
+newmtl white 
+Kd 1 1 0.929412
+Ka 0 0 0
+Ks 0 0 0
+Ke 0 0 0
+d 1
+Ns 100
+illum 2
+
+newmtl JoinedMaterial_#4
+Kd 0.498039 0.498039 0.498039
+Ka 0 0 0
+Ks 0 0 0
+Ke 0 0 0
+d 1
+Ns 100
+illum 2
+

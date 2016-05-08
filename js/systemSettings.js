@@ -22,7 +22,7 @@ SystemSettings.standardMaterial = new THREE.ShaderMaterial( {
 
 } );
 
-SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
+SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos, rotate) {
     var yWidth = 40; // standard height for walls
     var yPos = yWidth / 2; // standard center y for walls
 
@@ -90,6 +90,48 @@ SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
     return wall;
 };
 
+SystemSettings.addObjectFromFile = function( fileTexture, fileObj, xPos, yPos, zPos, scale, rotate ) {
+    var file_texture = 'textures/' + fileTexture;
+    var file_obj = 'animated_models/' + fileObj;
+    var texture = THREE.ImageUtils.loadTexture( file_texture );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(1, 1);
+    var material = new THREE.MeshPhongMaterial( {map: texture});
+
+    var objLoader = new THREE.OBJLoader();
+    objLoader.load(file_obj, function (obj) {
+            obj.position.set(xPos, yPos, zPos);
+            obj.scale.multiplyScalar(scale);
+            obj.rotation.x = rotate * Math.PI / 2;
+            obj.traverse(function (child) {
+                if (child instanceof THREE.Mesh) {
+                    child.material = material;
+                }
+            });            
+            Scene.addObject(obj);
+        });
+}
+
+SystemSettings.addMTLObjectFromFile = function( fileTexture, fileObj, xPos, yPos, zPos, scale, rotate ) {
+    var file_texture = 'textures/' + fileTexture;
+    var file_obj = 'animated_models/' + fileObj;
+
+    var objLoader = new THREE.OBJLoader();                
+    var mtlLoader = new THREE.MTLLoader();
+    mtlLoader.load( file_texture, function( materials ) {
+        materials.preload();
+        var objLoader = new THREE.OBJLoader();
+        objLoader.setMaterials( materials );
+        objLoader.load( file_obj, function ( object ) {
+            object.position.set(xPos, yPos, zPos);
+            object.scale.multiplyScalar(scale);
+            object.rotation.y = rotate * Math.PI/2;
+            Scene.addObject( object );
+        }
+        )});
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // Level 0: NO GRAVITY - IT CREATES BAD ARTIFACTS/MOVEMENTS
 ////////////////////////////////////////////////////////////////////////////////
@@ -143,31 +185,16 @@ SystemSettings.level0 = {
 
         Scene.addObject( plane );
       
-        // goal: DANTE
-        var objLoader = new THREE.OBJLoader();  
-        var onProgress = function ( xhr ) {
-            if ( xhr.lengthComputable ) {
-                var percentComplete = xhr.loaded / xhr.total * 100;
-                console.log( Math.round(percentComplete, 2) + '% downloaded' );
-            }
-        };
-        var onError = function ( xhr ) { };
-                
-        var mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setBaseUrl( 'animated_models/Batman/Texture/' );
-        mtlLoader.setPath( 'animated_models/Batman/' );
-        mtlLoader.load( 'Batman.mtl', function( materials ) {
-            materials.preload();
-            var objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials( materials );
-            objLoader.setPath( 'animated_models/Batman/' );
-            objLoader.load( 'Batman.obj', function ( object ) {
-                object.position.set(0, 0, 100);
-                object.scale.multiplyScalar(0.1);
-                //object.rotation.y = 3 * Math.PI/2;
-                Scene.addObject( object );
-            }, onProgress, onError );
-        });
+        // diablo: 
+        SystemSettings.addObjectFromFile( 'diablo.jpg', 'diablo.obj', 0, 10, 0, 40, 0 );
+
+        // batman
+        SystemSettings.addObjectFromFile( 'batman_body.png', 'batman.obj', 0, 0, 100, 0.1, 1 );
+
+        // printer
+        SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );
+        
+
 
         // creating a maze
         this.walls[0] = SystemSettings.createWall(60, 10, 0, 155);
