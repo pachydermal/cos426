@@ -152,10 +152,29 @@ SystemSettings.level0 = {
 
         var objLoader = new THREE.OBJLoader();
         var material = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
-        objLoader.load( "animated_models/001.obj", function ( object ) {
-            object.position.set(220, 2, -70);
-            Scene.addObject( object );
-        } );
+
+        // model
+        var onProgress = function ( xhr ) {
+            if ( xhr.lengthComputable ) {
+                var percentComplete = xhr.loaded / xhr.total * 100;
+                console.log( Math.round(percentComplete, 2) + '% downloaded' );
+            }
+        };
+        var onError = function ( xhr ) { };
+                
+        var mtlLoader = new THREE.MTLLoader();
+        mtlLoader.setBaseUrl( 'animated_models/dante/' );
+        mtlLoader.setPath( 'animated_models/dante/' );
+        mtlLoader.load( '001.mtl', function( materials ) {
+            materials.preload();
+            var objLoader = new THREE.OBJLoader();
+            objLoader.setMaterials( materials );
+            objLoader.setPath( 'animated_models/dante/' );
+            objLoader.load( '001.obj', function ( object ) {
+                object.position.set(220, 2, -70);
+                Scene.addObject( object );
+            }, onProgress, onError );
+        });
 
         // creating a maze
         this.walls[0] = SystemSettings.createWall(60, 10, 0, 155);
