@@ -67,9 +67,6 @@ Player.moveBackward = function(amount) {
 	newPosition[1] = this.position[1] + amount*b.y;
 	newPosition[2] = this.position[2] + amount*b.z;
 
-	console.log("current position:");
-	console.log(this.position);
-
 	if (Game.inBounds(newPosition) && Game.noWall(this.position, newPosition)) { // check if in bounds
 		// actually move since in bounds
 		this.position[0] = newPosition[0];
