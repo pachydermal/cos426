@@ -82,10 +82,3 @@ Parser.parseJson = function( jsonFile ) {
     return obj;
 };
 
-Parser.parseTxt = function( textFile ) {
-    var request = new XMLHttpRequest();
-    request.open("GET", textFile, false);
-    request.overrideMimeType('text/plain');
-    request.send(null);
-	return request.responseText;
-};

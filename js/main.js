@@ -1,82 +1,83 @@
+// DELETED BATCH.JS (SARAH)
+
+var Main = Main || { };
+
+// when HTML is finished loading, do this
 window.onload = function() {
-    
-    var cmd = Parser.getCommands(document.URL)[0];
-        
-    var height = cmd.height || window.innerHeight;
-    var width  = cmd.width  || window.innerWidth;
 
-    var interactive_space_ratio = 0.75;
-    height = height*interactive_space_ratio;
-    width = window.innerWidth*(interactive_space_ratio) - 50;
-        
-    var animated= cmd.animated|| 0;
-    var paused = false;
-    var debug = cmd.debug||false;
+    // Begin the game from level 0 (SARAH)
+    Player.init(); // we create a player
+    Game.init(); // and setup the game
+    Scene.create(); // then we create a scene
 
-    Scene.sceneName = cmd.scene || "default";
-    Raytracer.init(height, width, debug);
-    Scene.setUniforms();
-    
-    document.getElementById("topdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
-    document.getElementById("bottomdiv").style.height = window.innerHeight*(1.0 - interactive_space_ratio)/2.0+ "px";
-    
-    document.getElementById("leftdiv").style.width = window.innerWidth*(interactive_space_ratio) - 50 + "px";
-    document.getElementById("rightdiv").style.width = window.innerWidth*(1.0 - interactive_space_ratio) - 50 + "px";
-    document.getElementById("rightdiv").style.height = height + "px";
+    // The player must read the storyline, each button taking it to the next page. Eventually, one of the 
+    // buttons starts the game. See Game.playGame().
 
-    document.getElementById("rightdiv").style.float = "left";
-    document.getElementById("leftdiv").style.float = "left";
-    document.getElementById("leftdiv").style.marginLeft = "50px";
-    document.getElementById("rightdiv").style.marginRight = "50px";
-
-    document.getElementById("rightdiv").style.backgroundColor = "black";
-
-
-    var drawScene = function() {
-
-        if (!animated || !paused) Raytracer.render(animated);
-        
-        requestAnimationFrame(drawScene);
-    };
-
-    drawScene();
-    
-    function snapShot() {
-        // get the image data
-        try {
-            var dataURL = document.getElementById('canvas').toDataURL();
-        }
-        catch( err ) {
-            alert('Sorry, your browser does not support capturing an image.');
-            return;
-        }
-
-        // this will force downloading data as an image (rather than open in new window)
-        var url = dataURL.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
-        window.open( url );
-    }
 
     // add event listener that will cause 'I' key to download image
-    window.addEventListener( 'keyup', function( event ) {
-        // only respond to 'I' key
-        if ( event.which == 73 ) {
-            snapShot();
-        }
-        else if ( event.which == 32 ) {
-            paused = !paused;
-        }
-    });
     window.addEventListener( 'keydown', function( event ) {
-        // only respond to 'I' key
-        if (event.which == 38) {
-            Raytracer.handleZoom(1.0);  
-        }else if (event.which == 40) {
-            Raytracer.handleZoom(-1.0); 
-        }else if (event.which == 37) {
-            Raytracer.handleTurn(event, -1);
-        }else if (event.which == 39) {
-            Raytracer.handleTurn(event, 1);
+        var moveInc = 10;
+        var turnInc = 0.05;
+
+        if (event.which == 38) { // move forward
+            Player.moveForward(moveInc);  
+        }else if (event.which == 40) { // move backwards
+            Player.moveBackward(moveInc); 
+        }else if (event.which == 37) { // left turn
+            Player.turnLeft(turnInc);
+        }else if (event.which == 39) { // right turn
+            Player.turnRight(turnInc);
         }
     });
-}
-   
+
+};
+
+// We use this to present the new levels of the game, which are interactive and involve animation. 
+// called when the gui params change and we need to update mesh
+Main.particleSystemChangeCallback = function ( InputSettings ) {
+
+    // Get rid of an old system
+    GameEngine.stop(); // WE CHANGED THIS
+    for ( var i = 0 ; i < GameEngine._objects.length ; ++i ) {
+        Scene.removeObject( GameEngine.getDrawableObjects( i ) );
+    }
+    GameEngine.removeObjects();
+    GameEngine.removeAnimations();
+
+    // Get rid of old models
+    Scene.removeObjects();
+
+    // If we specified animated model, then lets load it first, THIS STAYS THE SAME
+    if ( InputSettings.animatedModelName ) {
+        var loader = new THREE.JSONLoader( true );
+        loader.load( InputSettings.animatedModelName, InputSettings.animationLoadFunction );
+    }
+
+    // Create new system
+    var initializer = new InputSettings.initializerFunction ( InputSettings.initializerSettings ); // STAYS THE SAME
+
+    var updater     = new InputSettings.updaterFunction ( InputSettings.updaterSettings ); // STAYS THE SAME
+
+    var emitter     = new Emitter ( { // WE CHANGED THIS
+        numObjects:    InputSettings.numObjects, 
+        initialize:    initializer,                  // initializer object
+        update:        updater,                      // updater object
+        material:      InputSettings.particleMaterial,
+        width:         InputSettings.width,
+        height:        InputSettings.height,
+    } );
+
+
+    GameEngine.addObject ( emitter );
+
+    // Add new particle system
+    GameEngine.start();
+
+    // Add the particle system
+    for ( var i = 0 ; i < GameEngine._objects.length ; ++i ) {
+        Scene.addObject( GameEngine.getDrawableObjects( i ) );
+    }
+
+    // Create the scene
+    InputSettings.createScene();
+};
