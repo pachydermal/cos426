@@ -152,7 +152,7 @@ SystemSettings.level0 = {
 
         var objLoader = new THREE.OBJLoader();
         var material = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
-
+        
         // model
         var onProgress = function ( xhr ) {
             if ( xhr.lengthComputable ) {
