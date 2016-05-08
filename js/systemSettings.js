@@ -154,14 +154,14 @@ SystemSettings.level0 = {
         var onError = function ( xhr ) { };
                 
         var mtlLoader = new THREE.MTLLoader();
-        mtlLoader.setBaseUrl( 'animated_models/Batman/Texture/' );
+        mtlLoader.setBaseUrl( 'animated_models/Batman/' );
         mtlLoader.setPath( 'animated_models/Batman/' );
-        mtlLoader.load( 'Batman.mtl', function( materials ) {
+        mtlLoader.load( 'BatmanArmoured.mtl', function( materials ) {
             materials.preload();
             var objLoader = new THREE.OBJLoader();
             objLoader.setMaterials( materials );
             objLoader.setPath( 'animated_models/Batman/' );
-            objLoader.load( 'Batman.obj', function ( object ) {
+            objLoader.load( 'BatmanArmoured.obj', function ( object ) {
                 object.position.set(0, 0, 100);
                 object.scale.multiplyScalar(0.1);
                 //object.rotation.y = 3 * Math.PI/2;
