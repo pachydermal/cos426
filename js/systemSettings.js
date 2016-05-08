@@ -147,8 +147,14 @@ SystemSettings.level0 = {
         var goal_material = new THREE.MeshPhongMaterial( {color: 0xF2EA64, emissive: 0x222222, side: THREE.DoubleSide } );
         var goal_geo = new THREE.BoxGeometry(4, 4, 4);
         var goal = new THREE.Mesh(goal_geo, goal_material);
-        goal.position.set(220, 2, -70);
-        Scene.addObject( goal );
+       // goal.position.set(220, 2, -70);
+        //Scene.addObject( goal );
+
+        var loader = new THREE.OBJLoader();
+        loader.load( "animated_models/001.obj", function ( object ) {
+        object.position.set(220, 2, -70);
+        Scene.addObject( object );
+        } );
 
         // creating a maze
         this.walls[0] = SystemSettings.createWall(60, 10, 0, 155);
