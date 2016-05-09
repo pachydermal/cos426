@@ -20,8 +20,7 @@ Scene.create = function () {
     Scene.setupLighting();
     Scene.setupMaterials();
     Scene._scene.fog = new THREE.FogExp2( 0x949494 );
-    Scene._scene.fog.density = 0.01;
-    console.log(Scene._scene.fog);
+    Scene._scene.fog.density = 0.015;
 };
 
 // Lights

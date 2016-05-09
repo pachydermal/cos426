@@ -23,7 +23,7 @@ SystemSettings.standardMaterial = new THREE.ShaderMaterial( {
 } );
 
 SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos, rotate) {
-    var yWidth = 40; // standard height for walls
+    var yWidth = 60; // standard height for walls
     var yPos = yWidth / 2; // standard center y for walls
 
     var ratio = 20;
@@ -188,21 +188,10 @@ SystemSettings.level0 = {
         SystemSettings.addObjectFromFile( 'diablo.jpg', 'diablo.obj', 0, 10, 0, 40, 0 );
 
         // batman
-        SystemSettings.addObjectFromFile( 'batman_body.png', 'batman.obj', 0, 0, 100, 0.1, 1 );
+        SystemSettings.addObjectFromFile( 'batman_body.png', 'batman.obj', 0, 0.5, 15, 0.1, 1 );
 
         // printer
-        // SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );
-
-
-
-        // create officers
-        var goal_material = new THREE.MeshPhongMaterial( {color: 0xF2EA64, emissive: 0x222222, side: THREE.DoubleSide } );
-        var goal_geo = new THREE.BoxGeometry(4, 4, 4);
-        var goal = new THREE.Mesh(goal_geo, goal_material);
-        goal.position.set(0, 10, 40);
-
-        Scene.addObject( goal );
-        
+        // SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );        
 
 
         // creating a maze
