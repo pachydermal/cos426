@@ -19,6 +19,9 @@ Scene.create = function () {
     Scene._scene  = new THREE.Scene();
     Scene.setupLighting();
     Scene.setupMaterials();
+    Scene._scene.fog = new THREE.FogExp2( 0x949494 );
+    Scene._scene.fog.density = 0.01;
+    console.log(Scene._scene.fog);
 };
 
 // Lights
@@ -26,10 +29,48 @@ Scene.setupLighting = function() {
     this._light[0] = new THREE.AmbientLight( 0x303030, 2.0 ); // soft white light
     Scene._scene.add(this._light[0]);
 
-    this._light[1]    = new THREE.PointLight( 0xffffff, 7.0, 500.0 );
+    this._light[1]    = new THREE.PointLight( 0xffffff, 7.0, 100.0 );
     this._light[1].position.set( 110, 350, 50 );
     this._light[1].decay = 2;
     Scene._scene.add( this._light[1]  );
+
+    var bias;
+    // to fix aliasing in shadows
+    if (Game.level == 0) {
+        bias = -0.0000001;
+    }
+    else if (Game.level == 1 || Game.level == 2) {
+        bias = 0.1;
+    }
+    else if (Game.level == 3) {
+        bias = -0.00001;
+    }
+
+    this._light[2] = new THREE.SpotLight( 0xffffff, 0.5 );
+    this._light[2].position.set( 0, 100, 0 );
+    this._light[2].castShadow = true;
+
+    this._light[2].shadow.mapSize.width = 1024;
+    this._light[2].shadow.mapSize.height = 1024;
+
+    this._light[2].shadow.camera.near = 0.1;
+    this._light[2].shadow.camera.far = 100;
+    this._light[2].shadow.bias = bias;
+
+    Scene._scene.add( this._light[2] );
+
+    this._light[3] = new THREE.SpotLight( 0xffffff, 0.5 );
+    this._light[3].position.set( 0, 100, 200 );
+    this._light[3].castShadow = true;
+
+    this._light[3].shadow.mapSize.width = 1024;
+    this._light[3].shadow.mapSize.height = 1024;
+
+    this._light[3].shadow.camera.near = 0.1;
+    this._light[3].shadow.camera.far = 100;
+    this._light[3].shadow.bias = bias;
+
+    Scene._scene.add( this._light[3] );
 };
 
 // Materials
@@ -55,8 +96,8 @@ Scene.addMaterial = function( material ) {
 
 // Objects
 Scene.addObject = function ( object ) {
-    // object.castShadow    = true;
-    // object.receiveShadow = false;
+    object.castShadow    = true;
+    object.receiveShadow = true;
     Scene._scene.add( object );
     Scene._objects.push( object );
 };

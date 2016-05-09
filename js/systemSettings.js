@@ -108,7 +108,7 @@ SystemSettings.addObjectFromFile = function( fileTexture, fileObj, xPos, yPos, z
                 if (child instanceof THREE.Mesh) {
                     child.material = material;
                 }
-            });            
+            });
             Scene.addObject(obj);
         });
 }
@@ -179,7 +179,6 @@ SystemSettings.level0 = {
         var phongGreen     = new THREE.MeshPhongMaterial( {color: 0x003200, emissive: 0x222222, side: THREE.DoubleSide, map: texture} );
 
         var plane     = new THREE.Mesh( plane_geo, phongGreen );
-
         plane.rotation.x = -1.57;
         plane.position.y = 0;
 
@@ -192,7 +191,17 @@ SystemSettings.level0 = {
         SystemSettings.addObjectFromFile( 'batman_body.png', 'batman.obj', 0, 0, 100, 0.1, 1 );
 
         // printer
-        SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );
+        // SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );
+
+
+
+        // create officers
+        var goal_material = new THREE.MeshPhongMaterial( {color: 0xF2EA64, emissive: 0x222222, side: THREE.DoubleSide } );
+        var goal_geo = new THREE.BoxGeometry(4, 4, 4);
+        var goal = new THREE.Mesh(goal_geo, goal_material);
+        goal.position.set(0, 10, 40);
+
+        Scene.addObject( goal );
         
 
 
