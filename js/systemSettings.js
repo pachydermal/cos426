@@ -164,6 +164,7 @@ SystemSettings.level0 = {
             objLoader.load( 'BatmanArmoured.obj', function ( object ) {
                 object.position.set(0, 0, 100);
                 object.scale.multiplyScalar(0.1);
+                object.castShadow = true;
                 //object.rotation.y = 3 * Math.PI/2;
                 Scene.addObject( object );
             }, onProgress, onError );
