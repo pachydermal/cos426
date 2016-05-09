@@ -22,8 +22,13 @@ SystemSettings.standardMaterial = new THREE.ShaderMaterial( {
 
 } );
 
+<<<<<<< HEAD
 SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos) {
     var yWidth = 40; // standard height for walls
+=======
+SystemSettings.createWall = function(xWidth, zWidth, xPos, zPos, rotate) {
+    var yWidth = 60; // standard height for walls
+>>>>>>> JennieWerner13/master
     var yPos = yWidth / 2; // standard center y for walls
 
     var ratio = 20;
@@ -143,6 +148,7 @@ SystemSettings.level0 = {
 
         Scene.addObject( plane );
       
+<<<<<<< HEAD
         // goal: DANTE
         var objLoader = new THREE.OBJLoader();  
         var onProgress = function ( xhr ) {
@@ -169,6 +175,17 @@ SystemSettings.level0 = {
                 Scene.addObject( object );
             }, onProgress, onError );
         });
+=======
+        // diablo: 
+        SystemSettings.addObjectFromFile( 'diablo.jpg', 'diablo.obj', 0, 10, 0, 40, 0 );
+
+        // batman
+        SystemSettings.addObjectFromFile( 'batman_body.png', 'batman.obj', 0, 0.5, 15, 0.1, 1 );
+
+        // printer
+        // SystemSettings.addMTLObjectFromFile( 'smallprinter.obj.mtl', 'smallprinter.obj', 20, 0, 20, 1, 0 );        
+
+>>>>>>> JennieWerner13/master
 
         // creating a maze
         this.walls[0] = SystemSettings.createWall(60, 10, 0, 155);
